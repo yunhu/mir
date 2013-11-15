@@ -1,0 +1,98 @@
+<include file="./Tpl/Home/index/head.html"/>   
+	<div class="body">
+		<div class="content">
+			<div class="member">
+					<h2 style="margin:20px;">会员中心</h2>
+<include file="./Tpl/Home/public/member_nav.html"/> 
+<div class="memberbody">
+					<h3 style="margin:20px;">请发布有效信息，否则查封用户和用户IP</h3>
+<table style="width:80%;margin:auto;" cellpadding="0" cellspacing="4">
+<tr>
+  <td align="right" valign="middle" style='width:24%'>网站地址：</td>
+  <td align="center" valign="middle" style='width:40%'><input type='text' name='url' id='url' class='' value='' /></td>
+  <td align="left" valign="middle" style='width:36%'>例如:http://www.sifu010.com</td>
+</tr>
+<tr>
+  <td align="right" valign="middle" style='width:24%'>服务器名：</td>
+  <td align="center" valign="middle" style='width:40%'><input type='text' name='servername' id='servername' class='' value='' /></td>
+  <td align="left" valign="middle" style='width:36%'>您的服务器名</td>
+</tr>
+<tr>
+  <td align="right" valign="middle" style='width:24%'>服务器IP：</td>
+  <td align="center" valign="middle" style='width:40%'><input type='text' name='serverip' id='serverip' class='' value='' /></td>
+  <td align="left" valign="middle" style='width:36%'>您的服务器IP</td>
+</tr>
+<tr>
+  <td align="right" valign="middle" style='width:24%'>开区日期：</td>
+  <td align="center" valign="middle" style='width:40%'><input type='text' name='date' id='date' class='' value='' /></td>
+  <td align="left" valign="middle" style='width:36%'>默认是当日</td>
+</tr>
+<tr>
+  <td align="right" valign="middle" style='width:24%'>开区时间：</td>
+  <td align="center" valign="middle" style='width:40%'>
+  <select name="Menu1" id="Menu1" style="float:left;margin-left:30px;width:50px;">
+	<option value='1' selected>1</option>
+	<option value='2'>2</option>
+	<option value='3'>3</option>
+	<option value='4'>4</option>
+	<option value='5'>5</option>
+	<option value='6'>6</option>
+	<option value='7'>7</option>
+	<option value='8'>8</option>
+	<option value='9'>9</option>
+	<option value='10'>10</option>
+  </select>
+  <select name="Menu2" id="Menu2" style="float:right;margin-right:30px;width:50px;">
+	<option value='1' selected>1</option>
+	<option value='2'>2</option>
+	<option value='3'>3</option>
+	<option value='4'>4</option>
+	<option value='5'>5</option>
+	<option value='6'>6</option>
+	<option value='7'>7</option>
+	<option value='8'>8</option>
+	<option value='9'>9</option>
+	<option value='10'>10</option>
+  </select>
+  </td>
+  <td align="left" valign="middle" style='width:36%'>通宵选择23:30</td>
+</tr>
+<tr>
+  <td align="right" valign="middle" style='width:24%'>客服QQ：</td>
+  <td align="center" valign="middle" style='width:40%'><input type='text' name='qq' id='qq' class='' value='' /></td>
+  <td align="left" valign="middle" style='width:36%'>您的常用QQ</td>
+</tr>
+<tr>
+  <td align="right" valign="middle" style='width:24%'>地区路线：</td>
+  <td align="center" valign="middle" style='width:40%'><input type='text' name='area' id='area' class='' value='' /></td>
+  <td align="left" valign="middle" style='width:36%'>例如:网通/电信</td>
+</tr>
+<tr>
+  <td align="right" valign="middle" style='width:24%'>版本介绍：</td>
+  <td align="center" valign="middle" style='width:40%'><input type='text' name='copyright' id='copyright' class='' value='' /></td>
+  <td align="left" valign="middle" style='width:36%'>描述您的版本内容</td>
+</tr>
+<tr>
+  <td align="right" valign="middle" style='width:24%'>展示图片：</td>
+  <td align="center" valign="middle" style='width:40%'><input type='text' name='img' id='img' class='' value='' /></td>
+  <td align="left" valign="middle" id="pic" style='width:36%'>您私服的激情图片，没有可以不传</td>
+</tr>
+<tr style="height:40px;">
+  <td colspan="3"><input type="submit" value="发布信息" />
+</td>
+</tr>
+</table>
+<script>
+    $("#pic").blur(function(){
+        alert(1);
+    });
+</script>
+<form action="/pre/upload"   enctype="multipart/form-data" method="post">
+            <input type="file"  name="photo1">
+					</form>
+</div>
+			</div>
+		</div>
+	</div>
+<!-- /body -->
+<include file="./Tpl/Home/index/footer.html"/> 

@@ -10,6 +10,7 @@ class PreModel extends Model {
      *para array
      */
     public function insert($table,$arr){
+   
         return M("$table")->add($arr);
     }
 

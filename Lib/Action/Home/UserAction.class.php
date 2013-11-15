@@ -64,9 +64,24 @@ class UserAction extends PreAction {
      *
      */
     public function callback(){
-        //code  F51309A92558B84BC8668810BD8F725A
-        //state cb6cc721b21178ea1d1383007ab796df
-        var_dump($_GET);
+       //检测是否存在
+        if($_GET['token']){
+            if(D('Pre')->select('user',array('openid'=>$_GET['mediaUserID']))){
+                $_SESSION['user']['login']=true;
+                $_SESSION['user']['name']=$_GET['mediaUserID'];
+                $this->redirect('/user/member');
+                 
+            }else{
+                if(D('Pre')->insert('user',array('name'=>$_GET['mediaUserID'],'openid'=>$_GET['mediaUserID'],'pwd'=>md5('123456'),'token'=>$_GET['token']))){
+
+                $_SESSION['user']['login']=true;
+                $_SESSION['user']['name']=$_GET['mediaUserID'];
+                $this->redirect('/user/member');
+                }else{
+                    echo "<script>alert('出现异常,请刷新重试')</script>";
+                }
+            }
+        }
       
 
     }
@@ -222,7 +237,7 @@ try{
     public function logout(){
        if($this->user_record($_SESSION['user']['name'])){ 
             unset($_SESSION['user']);
-            $this->redirect('index/index');
+            $this->redirect('/user/member');
        }
     }
      /**
