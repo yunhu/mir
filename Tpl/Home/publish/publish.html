@@ -55,7 +55,7 @@
 	<option value='10'>10</option>
   </select>
   </td>
-  <td align="left" valign="middle" style='width:36%'>通宵选择23:30</td>
+  <td align="left" valign="middle" style='width:36%'>例如   23:30</td>
 </tr>
 <tr>
   <td align="right" valign="middle" style='width:24%'>客服QQ：</td>
@@ -72,25 +72,65 @@
   <td align="center" valign="middle" style='width:40%'><input type='text' name='copyright' id='copyright' class='' value='' /></td>
   <td align="left" valign="middle" style='width:36%'>描述您的版本内容</td>
 </tr>
+
 <tr>
   <td align="right" valign="middle" style='width:24%'>展示图片：</td>
-  <td align="center" valign="middle" style='width:40%'><input type='text' name='img' id='img' class='' value='' /></td>
-  <td align="left" valign="middle" id="pic" style='width:36%'>您私服的激情图片，没有可以不传</td>
+  <td align="center" valign="middle" style='width:40%'><input type='text' name='img'  class='' id="pic" value='' /></td>
+  <td align="left" valign="middle"  style='width:36%'>您私服的激情图片，没有可以不传，大小不能超过200K</td>
+  <td align="left" valign="middle"  style='width:36%'>
+  
+<img id="img" src="__PUBLIC__/images/mirpassion.jpg" width="120" height="120"/> 
+  
+  </td>
 </tr>
 <tr style="height:40px;">
-  <td colspan="3"><input type="submit" value="发布信息" />
+  <td colspan="3"><input type="submit" value="发布信息" id="pub" />
 </td>
 </tr>
 </table>
+<input type="hidden" value="0" id="tag" />
+<input type="hidden" value="0" id="falg" />
 <script>
-    $("#pic").blur(function(){
-        alert(1);
+    $("#pic").click(function(){
+       $("#up").trigger('click');
+     
+       $("#pic").focus(function(){
+       
+               if(($("#up").val()&&$("#tag").val()==0)){
+          
+            //上传
+            $("#upfile").submit();
+        }
+       });
+     
+
+/*
+        if($("#pic").val()){
+         if(($("#up").val()&&$("#tag").val()==0)){
+            //上传
+            $("#upfile").submit();
+           
+        }  
+            
+        }else{ 
+        if(($("#up").val()&&$("#tag").val()==0)){
+            $("#tag").val(1);
+            $("#falg").val($("#up").val());
+            //上传
+            $("#upfile").submit();
+             $("#tag").val(0);
+        }
+        }
+        */
     });
+ 
 </script>
-<form action="/pre/upload"   enctype="multipart/form-data" method="post">
-            <input type="file"  name="photo1">
+<form action="/publish/upload"   enctype="multipart/form-data" id="upfile" method="post" target="hidden_frame">
+
+            <input type="file" style="display:none" name="photo1" id="up">
 					</form>
 </div>
+<iframe style="display:none" name='hidden_frame' id="hidden_frame"></iframe> 
 			</div>
 		</div>
 	</div>
