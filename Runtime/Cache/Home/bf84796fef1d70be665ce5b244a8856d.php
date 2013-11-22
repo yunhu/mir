@@ -112,13 +112,15 @@
 </tr>
 <tr>
   <td align="center" valign="middle" colspan="2">
-  <div class="loginqq">
-	<ul>
-	<li><a href=""><img src="__PUBLIC__/images/qq.jpg" width="37px" height="28px"/></a></li>
-	<li><a href=""><img src="__PUBLIC__/images/sina.png" width="37px" height="28px" /></a></li>
-	<li><a href=""><img src="__PUBLIC__/images/sina.png" width="37px" height="28px" /></a></li>
-	</ul>
-  </div>
+  <script id='denglu_login_js' type='text/javascript' charset='utf-8'></script>
+<script type='text/javascript' charset='utf-8'>
+	(function() {
+		var _dl_time = new Date().getTime();
+		var _dl_login = document.getElementById('denglu_login_js');
+		_dl_login.id = _dl_login.id + '_' + _dl_time;
+		_dl_login.src = 'http://static.denglu.cc/connect/logincode?appid=74187denF7qF4kG1QN1fDMJsHZjEiA&v=1.0.2&widget=4&styletype=1&size=282_98&asyn=true&time=' + _dl_time;
+	})();
+</script>
 </td>
 </tr>
 <tr style="height:50px;">
@@ -176,15 +178,28 @@
     $("#login").click(function(){
           if($("#name").val()&&$("#pwd").val()){
               $.post('/user/login_check',{name:$("#name").val(),pwd:$("#pwd").val()},function(data){
-                  if(data==1){
+				
+                   if(data==1){
                     location.href='/user/member';
-                  }else{
-                         $.layer({
-                         area : ['auto','auto'],
-                         dialog : {msg:'用户名/密码错误，请查看!',type :                    8}
+                  }else if(data==2){
+                	  $.layer({
+                          area : ['auto','auto'],
+                          dialog : {msg:'该用户已经禁止登陆，请查看!',type :                    8}
 
-                 }); 
-                  }
+                  }); 
+                  }else if(data==3){
+                	  $.layer({
+                          area : ['auto','auto'],
+                          dialog : {msg:'此IP已经禁止登陆，请查看!',type :                    8}
+
+                  }); 
+                   }else{
+                	   $.layer({
+                           area : ['auto','auto'],
+                           dialog : {msg:'用户名/密码错误，请查看!',type :                    8}
+
+                   }); 
+                       }
               });          
          }else{
                    $.layer({

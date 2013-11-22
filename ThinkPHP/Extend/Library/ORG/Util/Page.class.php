@@ -135,13 +135,13 @@ class Page {
             $page       =   ($nowCoolPage-1)*$this->rollPage+$i;
             if($page!=$this->nowPage){
                 if($page<=$this->totalPages){
-                    $linkPage .= "<a href='".str_replace('__PAGE__',$page,$url)."'>".$page."</a>";
+                    $linkPage .= "<a href='".str_replace('__PAGE__',$page,$url)."'>".$page."</a>&nbsp;&nbsp;";
                 }else{
                     break;
                 }
             }else{
                 if($this->totalPages != 1){
-                    $linkPage .= "<span class='current'>".$page."</span>";
+                    $linkPage .= "<span class='current'>".$page."</span>&nbsp;&nbsp;";
                 }
             }
         }

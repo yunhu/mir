@@ -10,8 +10,65 @@ class PublishAction extends PreAction {
     	 import('@.ORG.UploadFile');
     	 $upload = new UploadFile();
     	 $_SESSION['user']['upimg']='';
-        $this->display('publish');
+         $this->display('publish');
     }
+    
+    
+    /**
+     * 
+     * 
+     * 
+     * 接收发布信息
+     */
+    public function receive_publish(){
+    	//组合数据
+    	$data=$_POST;
+    	$time=strtotime($_POST['server_time'].' '.$_POST['Menu1'].':'.$_POST['Menu2'].':0');
+    	unset($data['Menu1']);
+    	unset($data['Menu2']);
+    	$data['server_time']=$time?$time:time();
+    	$data['uid']=$_SESSION['user']['uid'];
+    	$data['add_time']=time();
+    	//组合数据，是否不用审核
+    	$data=$this->deal_data($data);
+    	//是否包月
+    	if($this->check_month()){
+    		D('Pre')->insert('product',$data);
+    	}else{
+    		$score=D('Pre')->select('user_score',array('uid'=>$_SESSION['user']['uid']));
+
+    		if($score[0]['unused_score']>=SCORE){
+    			$score[0]['unused_score']-=SCORE;
+    			$score[0]['used_score']+=SCORE;
+    			M('UserScore')->save($score[0]);
+    			D('Pre')->insert('product',$data);
+    		}else{
+    			echo 2;
+    		}
+    		//检查积分是否够发布使用，并扣除积分
+    	}
+    	
+    }
+   
+    	
+    
+    
+    
+    /**
+     * 
+     * 
+     * 根据用户级别处理发布数据,3级别以上不能审核
+     */
+    public function deal_data($data){
+    	
+    	$user=D('Pre')->select('user',array('uid'=>$data['uid']));
+    	if($user[0]['level']>=3){
+    		$data['status']=0;
+    		
+    	}
+    	return $data;
+    }
+    
 	/**
 	 * 
 	 * 
@@ -19,6 +76,13 @@ class PublishAction extends PreAction {
 	 * Enter description here ...
 	 */
      public function mymir(){
+     	$count=M('Product')->where(array('uid'=>$_SESSION['user']['uid']))->count();
+   		import('ORG.Util.Page');
+     	$Page = new Page($count,2);
+     	$show  = $Page->show();
+     	$list = M('Product')->where(array('uid'=>$_SESSION['user']['uid']))->order('add_time')->limit($Page->firstRow.','.$Page->listRows)->select();
+     	$this->assign('list',$list);// 赋值数据集
+		$this->assign('page',$show);
         $this->display('mypublish');
     }
     public function upload(){
@@ -31,31 +95,25 @@ class PublishAction extends PreAction {
     	}
     }
     
-  
-    
     /**
      * 
-     * 检查用户是否被封
-     */
-    public function check_user(){
-    
-    }
-    
-  	/**
      * 
-     * 检查IP是否被封
+     * 检查是否包月
      */
-    public function check_ip(){
+  
+    public function check_month(){
+    	    	
+    	    	$userallow=M('UserAllow');
     
+    	    	$time=time();
+    	    	$month=$userallow->where("uid={$_SESSION['user']['uid']} and (($time-apply_time)<=2592000)")->limit(1)->select();
+    	    	if($time<=$month[0]['end_time']&&$time>=$month[0]['start_time']){
+    	    		return true;
+    	    	}else{
+    	    		return false;
+    	    	}
     }
-    
-	/**
-     * 
-     * 检查发布权限 时间是否过期
-     */
-    public function check_ip(){
-    
-    }
+  
     
     /**
      * 
@@ -72,7 +130,9 @@ class PublishAction extends PreAction {
 	 * Enter description here ...
 	 */
      public function info(){
-        $this->display('info');
+     	$user=D('Pre')->select('user',array('uid'=>$_SESSION['user']['uid']));
+     	$this->assign('user',$user[0]);
+        $this->display('info',$user);
     }
      /**
 	 * 

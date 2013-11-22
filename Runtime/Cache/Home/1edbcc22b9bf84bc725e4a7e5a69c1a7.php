@@ -95,15 +95,15 @@
 		<div class="content">
 			<div class="member">
 					<h2 style="margin:20px;">会员中心</h2>
-<div class="memberhead">
-  <div>会员首页</div>
-  <div>发布私服</div>
-  <div>我的私服</div>
-  <div>我的信息</div>
-  <div>我的文章</div>
-  <div>发布文章</div>
-</div>
 
+<div class="memberhead">
+  <div><a href="/user/member">会员首页</a></div>
+  <div><a href="/publish/">发布私服</a></div>
+  <div><a href="/publish/mymir">我的私服</a></div>
+  <div><a href="/publish/info">我的信息</a></div>
+  <div><a href="/publish/myarticle">我的文章</a></div>
+  <div><a href="/publish/pubarticle">发布文章</a></div>
+</div> 
 <div class="memberbody">
 	<ul>
         <li>欢迎,<?php echo ($user["name"]); ?>来到私服010;您上次退出时间为:<?php echo ($user["lastlogintime"]); ?> 上次登陆IP为:<?php echo ($user["lastloginip"]); ?></li>

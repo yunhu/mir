@@ -25,6 +25,7 @@ class UserAction extends PreAction {
      *
      */
     public function login(){
+    	
         if($_SESSION['user']['login']){$this->redirect('/user/member');
         
         }else{
@@ -38,15 +39,37 @@ class UserAction extends PreAction {
     public function login_check(){ 
         $data=$_POST;
         $data['pwd']=md5($data['pwd']);
-        if(D('User')->check_name($data)) {
+        $user=D('User')->check_name($data);
+        if($user) {
+        	if($user[0]['status']==1){echo 2;exit;};
+        	if($this->check_ip()){echo 3;exit;};
             $_SESSION['user']['login']=true;
-            $_SESSION['user']['name']=$data['name'];
+            $_SESSION['user']['name']=$user[0]['name'];
+            $_SESSION['user']['uid']=$user[0]['uid'];
             echo 1;
         }else{
             echo 0;
         }
     }
+    
 
+     /**
+     * 
+     * 检查IP是否被封
+     */
+    public function check_ip(){
+    	
+    	$ipallow=D('Pre')->select('deny_ip',array('ip'=>ip2long($_SERVER['REMOTE_ADDR'])));
+    	if($ipallow){
+    		return true;//IP被禁用
+    	}else{
+    		return false;
+    	}
+    }
+    
+  	
+    
+    
     /**
      *获得请求来源IP和时间记录登陆
      *
@@ -66,9 +89,11 @@ class UserAction extends PreAction {
     public function callback(){
        //检测是否存在
         if($_GET['token']){
-            if(D('Pre')->select('user',array('openid'=>$_GET['mediaUserID']))){
+        	$user=D('Pre')->select('user',array('openid'=>$_GET['mediaUserID']));
+            if($user){
                 $_SESSION['user']['login']=true;
                 $_SESSION['user']['name']=$_GET['mediaUserID'];
+                $_SESSION['user']['uid']=$user[0]['uid'];
                 $this->redirect('/user/member');
                  
             }else{
@@ -86,96 +111,7 @@ class UserAction extends PreAction {
 
     }
 
-    public function denglu(){
-        require_once("./sdk/denglu/Denglu.php");
-       /*
- *初始化接口类Denglu
- */
-$api = new Denglu('74187denF7qF4kG1QN1fDMJsHZjEiA','37928741aGPeJ0of5MN5kfESBXbVT5','utf-8');
-var_dump($api);
-die;
-/*
- *调用接品类相关方法获取媒体用户信息示例
- */
-if(!empty($_GET['token'])){
-     
-	try{
-		$userInfo = $api->getUserInfoByToken($_GET['token']);
-       
-        var_dump($userInfo);
-	}catch(DengluException $e){//获取异常后的处理办法(请自定义)
-		//return false;		
-		//echo $e->geterrorCode();  //返回错误编号
-		//echo $e->geterrorDescription();  //返回错误信息
-	}
-}
-var_dump($_GET);
-die;
-/*
- *发送绑定请求
- */
-try{
-	$result = $api->bind( $mediaUID, $uid, $uname, $uemail);
-    var_dump($result);
-}catch(DengluException $e){
-	//处理办法同上
-   echo $e->geterrorDescription();  
-}
-
-/*
- *发送解除绑定请求
- */
-try{
-	$result = $api->unbind( $mediaUID);
-}catch(DengluException $e){
-	//处理办法同上
-}
-
-/*
- *获取网站可用的媒体信息
- */
-try{
-	$result = $api->getMedia();
-}catch(DengluException $e){
-	//处理办法同上
-}
-
-/*
- *推送媒体用户登录新鲜事
- */
-try{
-	$result = $api->sendLoginFeed($mediaUserID);
-}catch(DengluException $e){
-	//处理办法同上
-}
-
-/*
- *分享内容
- */
-try{
-	$result = $api->share( $mediaUserID, $content, $url, $uid);
-}catch(DengluException $e){
-	//处理办法同上
-}
-
-/*
- *发送解除用户所有已绑定媒体用户的新求
- */
-try{
-	$result = $api->unbindAll($uid);
-}catch(DengluException $e){
-	//处理办法同上
-}
-
-    }
-
-    public function receriver(){
-    
-    }
-
-     public function bind(){
-    
-    }
+   
 
     /**
      *用户首页
