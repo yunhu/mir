@@ -16,7 +16,9 @@ class UserModel extends PreModel {
     *获取用户相关信息
     */
     public function fetch_userinfo($uid){
-        return M()->table('mir_user_score s')->join('mir_user_allow a on s.uid=a.uid')->where(array('s.uid'=>$uid))->find();
+    	$time=time();
+        return  M()->table('mir_user_score s')->join('mir_user_allow a on s.uid=a.uid')->where("s.uid=$uid and a.end_time >=$time")->find();
+	
     }
     /**
     *注册用户

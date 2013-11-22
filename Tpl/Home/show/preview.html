@@ -1,0 +1,42 @@
+<include file="./Tpl/Home/index/head.html"/>   
+	<div class="body">
+		<div class="content">
+			<div class="intro" style="height:420px;">
+				<h3>{$data.name}</h3>
+				<div class="content">
+					<div class="minleft">私服相关信息:</div>
+					<div class="leftcontent" style="margin-top:30px;">
+					
+<table style="width:98%;margin:auto;" cellpadding="0" cellspacing="13">
+<tr>
+  <td align="right" valign="middle" style='width:35%'>开区时间:</td>
+  <td align="left" valign="middle" style='width:65%'><input type='text' name='time' id='time' class='' value={$data.server_time|date="Y/m/d H:i:s",###} />
+</td>
+</tr>
+<tr>
+  <td align="right" valign="middle" style='width:35%'>私服线路:</td>
+  <td align="left" valign="middle" style='width:65%'><input type='text' name='line' id='line' class='' value={$data.line_type} />
+</td>
+</tr>
+<tr>
+  <td align="right" valign="middle" style='width:24%'>版本描述:</td>
+  <td align="left" valign="middle"><textarea style="height:100px;resize: none;">{$data.version}</textarea>
+</td>
+</tr>
+<tr style="height:50px;">
+  <td colspan="3"><a href="{$data.domain}" target="_blank" />前往该服<a/>
+</td>
+</tr>
+</table>
+				
+					</div>
+					<div class="rightcontent">
+						<span style="float:left">展示图片:</span><br/>
+						<img src="__PUBLIC__/upload/{$data.pic}" width="193" height="206" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- /body -->
+<include file="./Tpl/Home/index/footer.html"/> 

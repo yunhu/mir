@@ -67,9 +67,23 @@ class UserAction extends PreAction {
     	}
     }
     
-  	
+  	/**
+  	 * 
+  	 * 会员办理
+  	 * 
+  	 */
+    public function handle(){
+    	
+    	$this->display('month');
+    }
     
-    
+    /**
+     * 
+     *新手指导
+     */
+    public function green(){
+    	$this->display();
+    }
     /**
      *获得请求来源IP和时间记录登陆
      *

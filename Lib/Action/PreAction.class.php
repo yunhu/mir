@@ -2,10 +2,12 @@
 class PreAction extends Action {
     public function __construct(){
         parent::__construct();   
-        
-        
+      	
+       $this->assign('list',$this->header());
     }
-
+	public function header(){
+		return M('Product')->where(array('recommand'=>1,status=>0))->limit(10)->select();
+	}
     /**
      *
      *检测是否登陆 
@@ -41,4 +43,6 @@ class PreAction extends Action {
     		$_SESSION['user']['upimg']=$img;
     	}
     }
+    
+   
 }

@@ -33,6 +33,7 @@ class PublishAction extends PreAction {
     	$data=$this->deal_data($data);
     	//是否包月
     	if($this->check_month()){
+    		$data['status']=0;
     		D('Pre')->insert('product',$data);
     	}else{
     		$score=D('Pre')->select('user_score',array('uid'=>$_SESSION['user']['uid']));
@@ -106,7 +107,8 @@ class PublishAction extends PreAction {
     	    	$userallow=M('UserAllow');
     
     	    	$time=time();
-    	    	$month=$userallow->where("uid={$_SESSION['user']['uid']} and (($time-apply_time)<=2592000)")->limit(1)->select();
+    	    	$month=$userallow->where("uid={$_SESSION['user']['uid']} and end_time >=$time")->limit(1)->select();
+    	    	
     	    	if($time<=$month[0]['end_time']&&$time>=$month[0]['start_time']){
     	    		return true;
     	    	}else{
@@ -141,6 +143,7 @@ class PublishAction extends PreAction {
 	 * Enter description here ...
 	 */
      public function myarticle(){
+     	
         $this->display('',$data);
     }
     

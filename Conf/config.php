@@ -12,6 +12,15 @@ return array(
 	'DB_PREFIX'=>'mir_',
     'APP_GROUP_LIST' => 'Home,Admin',
     'DEFAULT_GROUP'  => 'Home',
+	'ALICONFIG'=>array(
+		'partner'=> '2088002242791533',
+                                'key'=>'owiu66hld5ciquwz4e2tw78ogrdjdsc3',
+                                'sign_type'=>strtoupper('MD5'),
+                                'input_charset'=>strtolower('utf-8'),
+                                'cacert'=>getcwd().'./sdk/taobao/pay/create/cacert.pem',
+                                'transport'=>'http',
+                            ),
+
     //网站地址
     'WEB_SITE'=>'122.234.238.166',
     //定义邮件验证时间 ,单位秒

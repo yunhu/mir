@@ -27,8 +27,8 @@
     	<td align="center" valign="middle" width="30px" height="30px">{$vo.pid}</td>
 	<td align="center" valign="middle">{$vo.name}</td>
 	<td align="center" valign="middle">{$vo.domain}</td>
-    <td align="center" valign="middle">{$vo.server_time}</td>
-	<td align="center" valign="middle">{$vo.domain}</td>
+    <td align="center" valign="middle">{$vo.server_time|date="Y/m/d H:i:s",###}</td>
+	<td align="center" valign="middle"><a href="/show/preview/id/{$vo.pid}">{$vo.domain}</a></td>
 
 
     

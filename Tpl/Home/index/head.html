@@ -32,16 +32,10 @@
 				<div  class="divcss">
 				<div class="center former">
 					<ul>
-					<li><span>无忧传奇</span></li>
-					<li><span>无忧传奇</span></li>
-					<li><span>无忧传奇</span></li>
-					<li><span>无忧传奇</span></li>
-					<li><span>无忧传奇</span></li>
-					<li><span>无忧传奇</span></li>
-					<li><span>无忧传奇</span></li>
-					<li><span>无忧传奇</span></li>
-					<li><span>无忧传奇</span></li>
-					<li><span>无忧传奇</span></li>
+				
+					<volist name="list" id="li">
+					<li><span><a href="/show/preview/id/{$li.pid}" target="_blank">{$li.name}</a></span></li>
+					</volist>
 					</ul>
 				</div>
 				</div>
@@ -75,7 +69,7 @@
 		</div>
 		<div class="bhead">
 			<ul>
-				<li><a href=""><span>私服首页</span></a></li>
+				<li><a href="/index/"><span>私服首页</span></a></li>
 				<li><a href=""><span>家族私服</span></a></li>
 				<li><a href=""><span>我要找服</span></a></li>
 				<li><a href=""><span>私服首页</span></a></li>
