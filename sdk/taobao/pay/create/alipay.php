@@ -69,7 +69,7 @@ class pay {
 
     public $alipay='';
     
-    public function __construct($num,$name='包月服务',$price='1'){
+    public function __construct($num,$name='包月服务',$price='100'){
          
         $this->alipay=C('ALICONFIG');
         $this->alipay['cacert']=preg_replace('/\\\\/','/',$this->alipay['cacert']);

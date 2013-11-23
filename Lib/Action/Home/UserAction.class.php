@@ -173,9 +173,13 @@ class UserAction extends PreAction {
             array_pop($data);
             $data['pwd']=md5($data['pwd']);
             $data['regtime']=time();
+             $uid=D("User")->register($data);
+            if($uid){
             $_SESSION['user']['login']=true;
             $_SESSION['user']['name']=$data['name'];
-            echo D("User")->register($data);
+            $_SESSION['user']['uid']=$uid;
+                echo 1;
+            }
         }
         
     }
