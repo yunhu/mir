@@ -1,0 +1,51 @@
+<include file="./Tpl/Home/Index/head.html"/>   
+<!-- /header -->
+<!-- body -->
+	<div class="body">
+		<div class="content">
+			<div class="member">
+					<h2 style="margin:20px;">会员中心</h2>
+<include file="./Tpl/Home/Public/member_nav.html"/> 
+<div class="memberbody">
+	<div>
+					<h2 style="margin:20px;">我发布的私服</h2>
+<table style="width:80%;margin:auto;" cellpadding="0" cellspacing="0"  border="1">
+   
+<tr>
+
+</tr>
+<tr>
+	<td align="center" valign="middle">ID</td>
+	<td align="center" valign="middle">服务器名称</td>
+	<td align="center" valign="middle">服务器地址</td>
+	<td align="center" valign="middle">开服时间</td>
+	<td align="center" valign="middle">详情</td>
+</tr>
+ <volist name="list" id="vo">
+<tr>
+
+    	<td align="center" valign="middle" width="30px" height="30px">{$vo.pid}</td>
+	<td align="center" valign="middle">{$vo.name}</td>
+	<td align="center" valign="middle">{$vo.domain}</td>
+    <td align="center" valign="middle">{$vo.server_time|date="Y/m/d H:i:s",###}</td>
+	<td align="center" valign="middle"><a href="/show/preview/id/{$vo.pid}">{$vo.domain}</a></td>
+
+
+    
+</tr>
+     </volist>
+
+</table>
+	</div>
+	<div class="page">
+		<ul>
+            {$page}
+		</ul>
+	</div>
+</div>
+			</div>
+		</div>
+	</div>
+<!-- /body -->
+<!-- footer -->
+<include file="./Tpl/Home/Index/footer.html"/> 

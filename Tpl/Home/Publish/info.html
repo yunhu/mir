@@ -1,0 +1,22 @@
+<include file="./Tpl/Home/Index/head.html"/>
+<!-- /header -->
+<!-- body -->
+	<div class="body">
+		<div class="content">
+			<div class="member">
+					<h2 style="margin:20px;">会员中心</h2>
+<include file="./Tpl/Home/Public/member_nav.html"/> 
+<div class="memberbody">
+	<ul>
+        <li><div class="w">帐号:</div><div style="width:200px;" class="w">{$user.name}</div></li>
+        <li><div class="w">邮箱:</div><div style="width:200px;" class="w">{$user.email}</div><div class="w">更换</div></li>
+        <li><div class="w">手机:</div><div style="width:200px;" class="w">{$user.phone}</div><div class="w">更换</div></li>
+		<li><div class="w">密码:</div><div style="width:200px;" class="w">*******</div><div class="w">修改</div></li>
+	</ul>
+</div>
+			</div>
+		</div>
+	</div>
+<!-- /body -->
+<!-- footer -->
+<include file="./Tpl/Home/Index/footer.html"/> 

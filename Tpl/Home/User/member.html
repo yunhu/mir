@@ -1,0 +1,27 @@
+<include file="./Tpl/Home/Index/head.html"/>   
+
+<!-- body -->
+	<div class="body">
+		<div class="content">
+			<div class="member">
+					<h2 style="margin:20px;">会员中心</h2>
+
+<include file="./Tpl/Home/Public/member_nav.html"/> 
+<div class="memberbody">
+	<ul>
+        <li>欢迎,{$user.name}来到私服010;您上次退出时间为:{$user.lastlogintime} 上次登陆IP为:{$user.lastloginip}</li>
+        <li><div class="w">会员等级:{$user.level}</div><div class="w"></div><div class="w"><a href="/desc/memdesc">会员等级说明</a></div></li>
+        <li><div class="w">我的金币:{$user.gold}</div><div class="w"><img src="__PUBLIC__/images/money.jpg" width="20" height="22" /></div><div class="w">充值</div></li>
+        <li><div class="w">我的积分:</div><div class="w"></div><div class="w">总积分:{$user.info.score}</div><div class="w">已用积分:{$user.info.used_score}</div><div class="w">未用积分:{$user.info.unused_score}</div><div class="w"><a href="/desc/memdesc">积分使用说明</a></div></li>
+        <if condition="$user['info']['type'] eq 1">
+        <li><div class="w">许可证:包月</div><div class="w"></div><div style="width:250px;" class="w">有效时间:{$user.info.start_time|date="Y/m/d",###}-{$user.info.end_time|date="Y/m/d",###}</div></li>
+        </if>
+	</ul>
+</div>
+			</div>
+		</div>
+	</div>
+<!-- /body -->
+<!-- footer -->
+
+<include file="./Tpl/Home/Index/footer.html"/> 

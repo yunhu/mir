@@ -1,0 +1,174 @@
+<include file="./Tpl/Home/Index/head.html"/>   
+	<div class="body">
+		<div class="content">
+			<div class="member">
+					<h2 style="margin:20px;">会员中心</h2>
+<include file="./Tpl/Home/Public/member_nav.html"/> 
+<div class="memberbody">
+    <h3 style="margin:20px;">请发布有效信息，否则查封用户和用户IP</h3>
+    <form id="pubform"  method="post">
+<table style="width:100%;" cellpadding="0" cellspacing="4" >
+<tr>
+  <td align="right" valign="middle" style='width:24%'>网站地址：</td>
+  <td align="center" valign="middle" style='width:40%'><input type='text' name='domain'  class='' value='' /></td>
+  <td align="left" valign="middle" style='width:36%'>例如:http://www.sifu010.com</td>
+</tr>
+<tr>
+  <td align="right" valign="middle" style='width:24%'>服务器名：</td>
+  <td align="center" valign="middle" style='width:40%'><input type='text' name='name'  class='' value='' /></td>
+  <td align="left" valign="middle" style='width:36%'>您的服务器名</td>
+</tr>
+<tr>
+  <td align="right" valign="middle" style='width:24%'>服务器IP：</td>
+  <td align="center" valign="middle" style='width:40%'><input type='text' name='serverip' id='serverip' class='' value='' /></td>
+  <td align="left" valign="middle" style='width:36%'>您的服务器IP</td>
+</tr>
+<tr>
+  <td align="right" valign="middle" style='width:24%'>开区日期：</td>
+  <td align="center" valign="middle" style='width:40%'><input type='text' name='server_time'  class='' value='' /></td>
+  <td align="left" valign="middle" style='width:36%'>例如:2013-12-24</td>
+</tr>
+<tr>
+  <td align="right" valign="middle" style='width:24%'>开区时间：</td>
+  <td align="center" valign="middle" style='width:40%'>
+  <select name="Menu1" id="Menu1" style="float:left;margin-left:30px;width:50px;">
+	<option value='0' selected>请选择</option>
+		<?php 
+			for ($i=1;$i<=23;$i++){
+			echo "<option value='$i'>$i</option>";
+		}
+		?>
+
+  </select>:
+  <select name="Menu2" id="Menu2" style="float:right;margin-right:30px;width:50px;">
+	<option value='' selected>请选择</option>
+			<option value='0'>00</option>
+	<option value='30'>30</option>
+  </select>
+  </td>
+  <td align="left" valign="middle" style='width:36%'>例如   23:30</td>
+</tr>
+<tr>
+  <td align="right" valign="middle" style='width:24%'>客服QQ：</td>
+  <td align="center" valign="middle" style='width:40%'><input type='text' name='qq'  class='' value='' /></td>
+  <td align="left" valign="middle" style='width:36%'>您的常用QQ</td>
+</tr>
+<tr>
+  <td align="right" valign="middle" style='width:24%'>地区路线：</td>
+  <td align="center" valign="middle" style='width:40%'><input type='text' name='line_type' id='area' class='' value='' /></td>
+  <td align="left" valign="middle" style='width:36%'>例如:网通/电信</td>
+</tr>
+<tr>
+  <td align="right" valign="middle" style='width:24%'>版本介绍：</td>
+  <td align="center" valign="middle" style='width:40%'><input type='text' name='version' id='copyright' class='' value='' /></td>
+  <td align="left" valign="middle" style='width:36%'>描述您的版本内容</td>
+</tr>
+
+<tr>
+  <td align="right" valign="middle" style='width:24%'>展示图片：</td>
+  <td align="center" valign="middle" style='width:40%'><input type='text' name='pic'  class='' id="pic" value='mirpassion.jpg' /></td>
+  <td align="left" valign="middle"  style='width:36%'>您私服的激情图片，没有可以不传，大小不能超过200K</td>
+  <td align="left" valign="middle"  style='width:36%'>
+  
+<img id="img" src="__PUBLIC__/images/mirpassion.jpg" width="120" height="120"/> 
+  
+  </td>
+</tr>
+
+<tr style="height:40px;" align="center">
+    <td colspan="3"><a  href="javascript:;"  id="pub" />发布信息</a>
+</td>
+</tr>
+</table>
+</form>
+<input type="hidden" value="0" id="tag" />
+<input type="hidden" value="0" id="falg" />
+<script>
+    $("#pic").click(function(){
+       $("#up").trigger('click');
+     
+       $("#pic").focus(function(){
+       
+               if(($("#up").val()&&$("#tag").val()==0)){
+          
+            //上传
+            $("#upfile").submit();
+        }
+       });
+     
+
+
+    });
+
+
+    //检测
+    $("#pub").click(function(){
+        //url
+          var flag=true;
+        $("table").find("input").each(function(){
+          
+            if(!$(this).val()){
+                flag=false;
+                 $.layer({
+                         area : ['auto','auto'],
+                         dialog : {msg:'您的信息填写不完善!',type : 8}
+
+                   }); 
+                   }else{
+                 
+                 
+                  
+                  
+                 }
+
+             
+             });
+                if(flag){
+                $.ajax({
+                        type:'post',
+                        url:'/publish/receive_publish',
+                        dataType:'json',
+                        data:$("#pubform").serialize(),
+                        success:function(data){
+                            if(data==2){
+                                          $.layer({
+                         area : ['auto','auto'],
+                         dialog : {msg:'您的积分不足,建议您办理包月!',type : 9},
+                         end:function(){
+                                //跳到包月页面
+                         }
+
+                 }); 
+                                }else{
+                             $.layer({
+                         area : ['auto','auto'],
+                         dialog : {msg:'发布成功!',type : 9},
+                         end:function(){
+                            location.reload();
+                         }
+
+                 }); }
+                        },
+                        error:function(data){
+                             $.layer({
+                         area : ['auto','auto'],
+                         dialog : {msg:'请刷新重试!',type : 8}
+
+                   }); 
+                        }
+                        
+                    });
+                }
+    });
+</script>
+<form action="/publish/upload"   enctype="multipart/form-data" id="upfile" method="post" target="hidden_frame">
+
+            <input type="file" style="display:none" name="photo1" id="up">
+					</form>
+</div>
+<iframe style="display:none" name='hidden_frame' id="hidden_frame"></iframe> 
+			</div>
+		</div>
+	</div>
+<!-- /body -->
+<include file="./Tpl/Home/Index/footer.html"/> 

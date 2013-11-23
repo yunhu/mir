@@ -1,0 +1,17 @@
+<include file="./Tpl/Home/Index/head.html"/>   
+	<div class="body">
+		<div class="content">
+			<div class="login">
+					<h2 style="margin:20px;">您的验证已经失效</h2>
+                    <div style="margin:20px;"><a href="javascript:;" id="back">去首页</a></div>
+			</div>
+		</div>
+	</div>
+<!-- /body -->
+
+<include file="./Tpl/Home/Index/footer.html"/> 
+<script>
+    $("#back").click(function(){
+        location.href="/index/";
+    });
+</script>

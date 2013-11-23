@@ -1,0 +1,59 @@
+<include file="./Tpl/Home/Index/head.html"/>   
+	<div class="body">
+		<div class="content">
+			<div class="login">
+					<h2 style="margin:20px;">密码找回</h2>
+<table style="width:80%;margin:auto;" cellpadding="0" cellspacing="4">
+<tr style="height:50px;">
+  <td colspan="2" valign="center">请输入您的相关信息:
+</td>
+</tr>
+<tr>
+  <td align="right" valign="middle" style='width:35%'>帐号：</td>
+  <td align="left" valign="middle" style='width:65%'><input type='text' name='email' id='name' class='' value='' />
+</td>
+</tr>
+<tr>
+  <td align="right" valign="middle" style='width:35%'>邮箱：</td>
+  <td align="left" valign="middle" style='width:65%'><input type='text' name='email' id='email' class='' value='' />
+</td>
+</tr>
+<tr style="height:50px;">
+  <td colspan="3"><input type="image" src="__PUBLIC__/images/getpass.jpg" id="find"/>
+</td>
+</tr>
+</table>
+			</div>
+		</div>
+	</div>
+<!-- /body -->
+
+<include file="./Tpl/Home/Index/footer.html"/> 
+<script>
+    $("#find").click(function(){
+        if($("#name").val()&&$("#email").val()){
+            $.post('/user/check_email',{name:$("#name").val(),email:$("#email").val()},function(data){
+                   if(data==1){
+                         $.layer({
+                         area : ['auto','auto'],
+                         dialog : {msg:'发送成功请到您的邮箱里查看!',type :                    9}
+
+                 }); 
+                     }else{
+                         $.layer({
+                         area : ['auto','auto'],
+                         dialog : {msg:'请刷新重试!',type :                    8}
+
+                 }); 
+                     }
+               
+            });
+        }else{
+              $.layer({
+                         area : ['auto','auto'],
+                         dialog : {msg:'用户/邮箱不能为空!',type :                    8}
+
+                 }); 
+        }
+    });
+</script>
