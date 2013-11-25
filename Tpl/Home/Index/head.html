@@ -17,9 +17,9 @@
 		<div id="navMenu">
 		<ul>
 			<li style="margin-left:0px;"><a href='/index/index'><span>首页</span></a></li>
-			<li><a href=''><span>传奇素材</span></a></li>
-			<li><a href=''><span>资料下载</span></a></li>
-			<li><a href=''><span>相关文章</span></a></li>
+			<li><a href='/material/index'><span>传奇素材</span></a></li>
+			<li><a href='/tool/index'><span>资料下载</span></a></li>
+			<li><a href='/article/index'><span>相关文章</span></a></li>
 			<li><a href=''><span>文坛</span></a></li>
 		</ul>
 		</div>
@@ -69,16 +69,9 @@
 		</div>
 		<div class="bhead">
 			<ul>
-				<li><a href="/index/"><span>私服首页</span></a></li>
-				<li><a href=""><span>家族私服</span></a></li>
-				<li><a href=""><span>我要找服</span></a></li>
-				<li><a href=""><span>私服首页</span></a></li>
-				<li><a href=""><span>私服首页</span></a></li>
-				<li><a href=""><span>私服首页</span></a></li>
-				<li><a href=""><span>私服首页</span></a></li>
-				<li><a href=""><span>私服首页</span></a></li>
-				<li><a href=""><span>私服首页</span></a></li>
-				<li style="*width:95.9px;"><a href=""><span>私服首页</span></a></li>
+                <volist name="nav" id="na">
+                <li><a href=""><span>{$na.name}</span></a></li>
+                </volist>
 			</ul>
 		</div>
 	</div> 

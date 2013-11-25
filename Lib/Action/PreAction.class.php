@@ -1,13 +1,23 @@
 <?php
 class PreAction extends Action {
     public function __construct(){
-        parent::__construct();   
-      	
+       parent::__construct();   
+       $this->assign('nav',$this->fetch_category());
        $this->assign('list',$this->header());
     }
 	public function header(){
 		return M('Product')->where(array('recommand'=>1,status=>0))->limit(10)->select();
 	}
+
+    /**
+     *
+     *分类获取
+     */
+    public function fetch_category(){
+        $arr=array('Index'=>1,'Material'=>2,'Tool'=>3,'Article'=>4); 
+        $action=substr(get_class($this),0,-6);
+        return M('Category')->where(array('pid'=>$arr[$action]))->select();
+    }
     /**
      *
      *检测是否登陆 

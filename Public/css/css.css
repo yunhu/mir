@@ -41,6 +41,9 @@ input,select,button{
 	width:100%;
 	height:auto;
 }
+.border{
+	border:1px solid #797979;
+}
 /*------------header------------*/
 .head{
 	width:100%;
@@ -307,8 +310,13 @@ input,select,button{
 	background:none;
 	overflow:hidden;
 }
+
 .span1,.span2,.span4,.span6,.span7{display:block;float:left;width:99px;}
 .span3,.span5{display:block;float:left;width:250px;}
+.span8{display:block;float:left;width:160px;}
+.span9,.span11{display:block;float:left;width:140px;}
+.span10{display:block;float:left;width:350px;}
+.span12{display:block;float:left;width:205px;*width:201px;}
 .flink{
 	margin:auto;
 	padding:auto;
@@ -559,4 +567,152 @@ input,select,button{
 	*width:33%;
 	float:left;
 }
+.position{
+	float:left;
+	text-align:left;
+	overflow:hidden;
+}
+.articlelist{
+	margin:50px auto;
+	padding:auto;
+	width:90%;
+	height:60%;
+	overflow:hidden;
+}
+.articlelist ul li{
+	width:98%;
+	height:18px;
+	line-height:18px;
+	overflow:hidden;
+}
+.articlelist ul li span{
+	margin:0 10px;
+	overflow:hidden;
+}
+.article{
+	margin:auto;
+	padding:auto;
+	width:50%;
+	height:75%;
+	text-align:justify;
+	line-height:18px;
+	overflow:hidden;
+}
+.article p{
+	padding:20px;
+}
+.goback{
+	margin:20px auto;
+	padding:auto;
+	overflow:hidden;
+}
 /*------------content-end----------*/
+/*---------------pagelist-------------*/
+.pagelist{
+	margin:20px auto;
+	width:80%;
+	padding:auto;
+	overflow:hidden;
+}
+.pagelist ul li{
+	float:left;
+	font-family:Tahoma;
+	line-height:17px;
+	margin-right:110px;
+}
+.pagelist ul li a{
+	float:left;
+	padding:2px 4px 2px;
+	color:#555;
+	display:block;
+}
+.pagelist ul li a:hover{
+	color:#ba2636;
+	text-decoration:none;
+	padding:2px 4px 2px;
+}
+.pagelist .pageinfo strong{
+	color:#555;
+	font-weight:normal;
+	margin:0px 2px;
+}
+/*---------------pagelist- end------------*/
+/*---------------download-------------*/
+.download{
+	margin:auto;
+	padding:50px;
+	width:400px;
+	height:400px;
+	overflow:hidden;
+}
+.download div{
+	margin:15px;
+	text-align:left;
+}
+.download button{
+	margin-top:50px;
+}
+/*---------------download- end------------*/
+/*---------------find-------------*/
+.find{
+	margin:auto;
+	padding:auto;
+	width:300px;
+	*width:320px;
+	height:40px;
+	line-height:20px;
+	text-align:center;
+	overflow:hidden;
+}
+.tofind{
+	margin:auto;
+	padding:auto;
+	margin-bottom:50px;
+	width:700px;
+	min-height:400px;
+	height:auto;
+	border:1px solid #797979;
+	text-align:center;
+	background:none;
+	overflow:hidden;
+}
+/*---------------find- end------------*/
+/*---------------imglist-------------*/
+.imglist{
+	margin:auto;
+	padding:30px 0px 1px 30px;
+	width:100%;
+	height:95%;
+	text-align:center;
+	overflow:hidden;
+}
+.imglist .imgdiv{
+	width:100%;
+	height:25%;
+	overflow:hidden;
+}
+.imglist .imgdiv ul li{
+	float:left;
+	width:210px;
+	height:170px;
+	margin-right:30px;
+	border:1px solid #797979;
+}
+/*---------------imglist- end------------*/
+/*---------------material-------------*/
+.material{
+	margin:auto;
+	padding:50px;
+	width:80%;
+	height:90%;
+	overflow:hidden;
+}
+.material div{
+	margin:15px;
+	text-align:left;
+}
+.material .leftmater,.material .rightmater{float:left;margin:1px;*margin:3px;}
+.material button{
+	margin-top:50px;
+}
+/*---------------material- end------------*/
