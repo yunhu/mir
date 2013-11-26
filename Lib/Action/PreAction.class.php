@@ -14,9 +14,14 @@ class PreAction extends Action {
      *分类获取
      */
     public function fetch_category(){
-        $arr=array('Index'=>1,'Material'=>2,'Tool'=>3,'Article'=>4); 
-        $action=substr(get_class($this),0,-6);
-        return M('Category')->where(array('pid'=>$arr[$action]))->select();
+        switch(substr(get_class($this),0,-6)){
+        case 'Index':$id=1;break;
+        case 'Material':$id=2;break;
+        case 'Tool':$id=3;break;
+        case 'Article':$id=4;break;
+        default :$id=1;break;
+        }
+        return M('Category')->where(array('pid'=>$id))->select();
     }
     /**
      *

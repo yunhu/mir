@@ -143,7 +143,16 @@ class PublishAction extends PreAction {
 	 * Enter description here ...
 	 */
      public function myarticle(){
-     	
+
+
+        $count=M('Article')->where(array('uid'=>$_SESSION['user']['uid']))->count();
+   		import('ORG.Util.Page');
+     	$Page = new Page($count,2);
+     	$show  = $Page->show();
+     	$list = M('Article')->where(array('uid'=>$_SESSION['user']['uid']))->limit($Page->firstRow.','.$Page->listRows)->select();
+     	$this->assign('list',$list);// 赋值数据集
+        $this->assign('page',$show);
+
         $this->display('',$data);
     }
     
@@ -154,7 +163,30 @@ class PublishAction extends PreAction {
 	 * Enter description here ...
 	 */
      public function pubarticle(){
+      $this->assign('category',M('Category')->where(array('pid'=>4))->select());
         $this->display('');
+    }
+    /**
+     *
+     *接收文章
+     */
+    public function receive (){
+        if($_POST['title']||$_POST['content']){
+             $data=$_POST;
+             $data['uid']=$_SESSION['user']['uid'];
+             $data['apply_time']=time();
+             $str="<br /><a href='http://www.sifu010.com'>来自私服010</a>";
+             $data['content'].=$str;
+             if(CHECK_ARTICLE==1){
+                $data['status']=0;
+             }
+             if(D('Pre')->insert('article',$data)){
+
+               $this->redirect('/publish/pubarticle');
+             }
+        }else{
+            echo "<script>history.go(-1)</script>";
+        }
     }
    
 }

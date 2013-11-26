@@ -1,0 +1,25 @@
+﻿<include file="./Tpl/Home/Index/head.html"/>  
+	<div class="body">
+		<div class="content border">
+			<div class="intro" style="">
+				<div class="position" style="margin:20px auto auto auto;">当前位置:私服010>相关文章></div>
+                <h3 style="margin:40px 0px;">{$data.title}</h3>
+				<div class="article border">
+					<p>
+        {$data.content}
+					</p>
+				</div>
+				<div class="goback">
+					<div><button onclick="goback()">返回</button></div>
+				</div>
+			</div>
+		</div>
+	</div>
+    <script>
+        function goback(){
+            history.go(-1);
+        }
+    </script>
+<!-- /body -->
+<!-- footer -->
+<include file="./Tpl/Home/Index/footer.html"/>

@@ -14,34 +14,20 @@
 	<td align="center" valign="middle">文章标题</td>
 	<td align="center" valign="middle">操作</td>
 </tr>
+
+
+<volist name="list" id="li">
 <tr>
-	<td align="center" valign="middle">1</td>
-	<td align="center" valign="middle">那年我们玩的传奇</td>
-	<td align="center" valign="middle"><a href="">编辑</a>|<a href="">删除</a>|<a href="">查看</a></td>
+    <td align="center" valign="middle">{$li.pid}</td>
+    <td align="center" valign="middle">{$li.title}</td>
+    <td align="center" valign="middle"><a href="">编辑</a>|<a href="">删除</a>|<a href="/Article/preview/id/{$li.pid}">查看</a></td>
 </tr>
-<tr>
-	<td align="center" valign="middle">2</td>
-	<td align="center" valign="middle">那年我们玩的传奇</td>
-	<td align="center" valign="middle"><a href="">编辑</a>|<a href="">删除</a>|<a href="">查看</a></td>
-</tr>
-<tr>
-	<td align="center" valign="middle">3</td>
-	<td align="center" valign="middle">那年我们玩的传奇</td>
-	<td align="center" valign="middle"><a href="">编辑</a>|<a href="">删除</a>|<a href="">查看</a></td>
-</tr>
-<tr>
-	<td align="center" valign="middle">4</td>
-	<td align="center" valign="middle">那年我们玩的传奇</td>
-	<td align="center" valign="middle"><a href="">编辑</a>|<a href="">删除</a>|<a href="">查看</a></td>
-</tr>
+</volist>
 </table>
 	</div>
 	<div class="page">
 		<ul>
-			<li><a href="">首页</a></li>
-			<li><a href="">上一页</a></li>
-			<li><a href="">下一页</a></li>
-			<li><a href="">尾页</a></li>
+            <li><a href="">{$page}</a></li>
 		</ul>
 	</div>
 </div>

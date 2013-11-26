@@ -141,6 +141,8 @@ class UserAction extends PreAction {
             $data['user']['info']=$this->fetch_info_user($user_data[0]['uid']);
             $data['user']['lastlogintime']=date("Y-m-d H:i:s",$data['user']['lastlogintime']);
             $data['user']['lastloginip']=long2ip($data['user']['lastloginip']);
+            $score=M('UserScore')->where(array('uid'=>$_SESSION['user']['uid']))->select();
+            $data['user']['score']=$score[0];
             $this->assign($data);
             $this->display('member',$data);
         }

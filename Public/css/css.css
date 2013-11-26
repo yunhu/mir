@@ -528,7 +528,6 @@ input,select,button{
 	margin:auto;
 	padding:auto;
 	width:80%;
-	height:300px;
 	text-align:center;
 	background:none;
 	overflow:hidden;
@@ -593,7 +592,6 @@ input,select,button{
 	margin:auto;
 	padding:auto;
 	width:50%;
-	height:75%;
 	text-align:justify;
 	line-height:18px;
 	overflow:hidden;

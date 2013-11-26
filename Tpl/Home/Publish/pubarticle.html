@@ -9,18 +9,30 @@
 <div class="memberbody">
 					<h3 style="margin:20px;">发布文章</h3>
 					<p style="width:80%;margin:20px 20px 20px 80px;">
-说明:发布一个文章会获得一个积分，一天最多发5个，发布的文章请作下简单的修改，不要重复的太明显，我们会在您发布后审核，如果发现您是乱发刚会扣除双倍积分。情节严重者封IP 和用户
+说明:发布一个文章会获得一个积分，发布的文章请作下简单的修改，不要重复的太明显，我们会在您发布后审核，如果发现您是乱发刚会扣除双倍积分。情节严重者封IP 和用户
 </p>
-					<form action=""  enctype="multipart/form-data" method="post">
+					<form action="/publish/receive"  enctype="multipart/form-data" method="post">
 <table style="width:80%;margin:auto;" cellpadding="0" cellspacing="4">
 <tr>
   <td align="right" valign="middle" style='width:35%'>文章标题:</td>
-  <td align="left" valign="middle" style='width:65%'><input type='text' name='name' id='name' class='' value='' />
+  <td align="left" valign="middle" style='width:65%'><input type='text' name='title' id='name' class='' value='' />
+</td>
+</tr>
+<tr>
+  <td align="right" valign="middle" style='width:35%'>选择分类:</td>
+  <td align="left" valign="middle" style='width:65%'>
+      <select id="sel" name="classify">
+        <option value="no">---请选择---</option>
+        <volist name="category" id="cate">
+        <option value="{$cate.id}">{$cate.name}</option>
+        </volist>
+      </select>
+  </td>
 </td>
 </tr>
 <tr>
   <td align="right" valign="middle" style='width:35%'>文章内容:</td>
-  <td align="left" valign="middle" style='width:65%'><textarea style="width:80%;height:100px;resize: none;"></textarea>
+  <td align="left" valign="middle" style='width:65%'><textarea name="content" style="width:80%;height:100px;resize: none;"></textarea>
 </td>
 </tr>
 <tr style="height:40px;">
