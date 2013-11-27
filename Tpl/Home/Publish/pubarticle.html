@@ -1,4 +1,7 @@
 <include file="./Tpl/Home/Index/head.html"/> 
+  <script type="text/javascript" charset="utf-8" src="__PUBLIC__/js/uedeitor/editor_config.js"></script>
+  <script type="text/javascript" charset="utf-8" src="__PUBLIC__/js/uedeitor/editor.js"></script>
+  <link rel="stylesheet" href="__PUBLIC__/js/uedeitor/themes/default/ueditor.css" />
 <!-- /header -->
 <!-- body -->
 	<div class="body">
@@ -32,7 +35,9 @@
 </tr>
 <tr>
   <td align="right" valign="middle" style='width:35%'>文章内容:</td>
-  <td align="left" valign="middle" style='width:65%'><textarea name="content" style="width:80%;height:100px;resize: none;"></textarea>
+  <td align="left" valign="middle" style='width:65%'>
+      <script type="text/plain"  id="editors" style="width:400px;height: auto; overflow: hidden;">
+         </script>
 </td>
 </tr>
 <tr style="height:40px;">
@@ -45,6 +50,14 @@
 			</div>
 		</div>
 	</div>
+    <script>
+         var editors = new UE.ui.Editor();
+    editors.render('editors');
+   editors.ready(function(){
+  //需要ready后执行，否则可能报错
+  editors.setContent('');
+  })
+    </script>
 <!-- /body -->
 <!-- footer -->
 	<include file="./Tpl/Home/Index/footer.html"/> 

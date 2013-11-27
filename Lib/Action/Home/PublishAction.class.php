@@ -155,7 +155,7 @@ class PublishAction extends PreAction {
 
         $this->display('',$data);
     }
-    
+  
  	/**
 	 * 
 	 * 
@@ -173,6 +173,8 @@ class PublishAction extends PreAction {
     public function receive (){
         if($_POST['title']||$_POST['content']){
              $data=$_POST;
+             $data['content']=$data['editorValue'];
+             unset($data['editorValue']);
              $data['uid']=$_SESSION['user']['uid'];
              $data['apply_time']=time();
              $str="<br /><a href='http://www.sifu010.com'>来自私服010</a>";
@@ -181,8 +183,7 @@ class PublishAction extends PreAction {
                 $data['status']=0;
              }
              if(D('Pre')->insert('article',$data)){
-
-               $this->redirect('/publish/pubarticle');
+                header("location:/publish/pubarticle");
              }
         }else{
             echo "<script>history.go(-1)</script>";

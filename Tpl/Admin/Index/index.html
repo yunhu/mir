@@ -1,0 +1,165 @@
+<include file="./Tpl/Admin/Public/head.html"/>   
+
+ <div class="content-box">
+      <!-- Start Content Box -->
+      <div class="content-box-header">
+        <h3>内容框</h3>
+        <ul class="content-box-tabs">
+          <li><a href="#tab1" class="default-tab">表</a></li>
+          <!-- href must be unique and match the id of target div -->
+          <li><a href="#tab2">表格</a></li>
+        </ul>
+        <div class="clear"></div>
+      </div>
+      <!-- End .content-box-header -->
+      <div class="content-box-content">
+        <div class="tab-content default-tab" id="tab1">
+          <!-- This is the target div. id must match the href of this div's tab -->
+          <div class="notification attention png_bg"> <a href="#" class="close"><img src="__PUBLIC__/resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+            <div>这是一个内容框。 你可以把它无论你在想。 顺便说一下，你可以关闭与顶级右交叉此通知。 </div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th> <input class="check-all" type="checkbox" /> 全选</th>
+                <th> 文章ID </th>
+                <th> 用户ID</th>
+                <th> 文章标题 </th>
+                <th> 发布时间</th>
+                <th> 操作</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <td colspan="6">
+                  <div class="bulk-actions align-left">
+                    <select name="dropdown">
+                      <option value="option1">选择动作.</option>
+                      <option value="option2">通过</option>
+                      <option value="option3">不通过</option>
+                    </select>
+                    <a class="button" href="#">应用</a> </div>
+                  <div class="pagination"> <a href="#" title="First Page">&laquo; First</a><a href="#" title="Previous Page">&laquo; Previous</a> <a href="#" class="number current" title="1">1</a> <a href="#" class="number" title="2">2</a> <a href="#" class="number " title="3">3</a> <a href="#" class="number" title="4">4</a> <a href="#" title="Next Page">Next &raquo;</a><a href="#" title="Last Page">Last &raquo;</a> </div>
+                  <!-- End .pagination -->
+                  <div class="clear"></div>
+                </td>
+              </tr>
+            </tfoot>
+            <tbody>
+                <volist name="data" id="li">
+              <tr>
+                <td>
+                  <input type="checkbox" />
+                </td>
+                <td>{$li.pid}</td>
+                <td><a href="#" title="title">{$li.uid}</a></td>
+                <td>{$li.title}</td>
+                <td>{$li.apply_time|date="Y/m/d H:i:s",###}</td>
+                <td>
+                  <!-- Icons -->
+                  <a href="#" title="Pass"><img src="__PUBLIC__/resources/images/icons/pencil.png" onclick="update({$li.pid},0)" alt="Pass" /></a> <a href="#" title="Deny"><img onclick="update({$li.pid},2)" src="__PUBLIC__/resources/images/icons/cross.png" alt="Deny" /></a> <a href="/article/preview/id/{$li.pid}" target="_blank" title="view"><img src="__PUBLIC__/resources/images/icons/hammer_screwdriver.png" alt="view" /></a> </td>
+              </tr>
+              </volist> 
+            </tbody>
+          </table>
+          <script>
+              function update(str,sta){
+                  $.post('/admin/index/update_article',{pid:str,status:sta},function(data){
+                      if(data==1){
+                            location.reload();
+                      }else{
+                        alert('操作失败');
+                  }
+                  });
+              }
+          </script>
+        </div>
+        <!-- End #tab1 -->
+        <div class="tab-content" id="tab2">
+            <fieldset>
+            <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
+            <p>
+              <label>Small form input</label>
+              <input class="text-input small-input" type="text" id="small-input" name="small-input" />
+              <span class="input-notification success png_bg">Successful message</span>
+              <!-- Classes for input-notification: success, error, information, attention -->
+              <br />
+              <small>A small description of the field</small> </p>
+            <p>
+              <label>Medium form input</label>
+              <input class="text-input medium-input datepicker" type="text" id="medium-input" name="medium-input" />
+              <span class="input-notification error png_bg">Error message</span> </p>
+            <p>
+              <label>Large form input</label>
+              <input class="text-input large-input" type="text" id="large-input" name="large-input" />
+            </p>
+            <p>
+              <label>Checkboxes</label>
+              <input type="checkbox" name="checkbox1" />
+              This is a checkbox
+              <input type="checkbox" name="checkbox2" />
+              And this is another checkbox </p>
+            <p>
+              <label>Radio buttons</label>
+              <input type="radio" name="radio1" />
+              This is a radio button<br />
+              <input type="radio" name="radio2" />
+              This is another radio button </p>
+            <p>
+              <label>This is a drop down list</label>
+              <select name="dropdown" class="small-input">
+                <option value="option1">Option 1</option>
+                <option value="option2">Option 2</option>
+                <option value="option3">Option 3</option>
+                <option value="option4">Option 4</option>
+              </select>
+            </p>
+            <p>
+              <label>Textarea with WYSIWYG</label>
+              <textarea class="text-input textarea wysiwyg" id="textarea" name="textfield" cols="79" rows="15"></textarea>
+            </p>
+            <p>
+              <input name="submit" type="submit" class="button" value="Submit" />
+            </p>
+            </fieldset>
+            <div class="clear"></div>
+            <!-- End .clear -->
+        </div>
+        <!-- End #tab2 -->
+      </div>
+      <!-- End .content-box-content -->
+    </div>
+    <!-- End .content-box -->
+    <div class="content-box column-left">
+      <div class="content-box-header">
+        <h3>内容框的左侧</h3>
+      </div>
+      <!-- End .content-box-header -->
+      <div class="content-box-content">
+        <div class="tab-content default-tab">
+          <h4>网络传媒</h4>
+          <p> 网络逐渐成为大众娱乐的主要传媒阵地，他们利用网站来进行宣传、娱乐、产品资讯发布、论坛交流、资料下载等等。与此同时，也带来了商机，网站设计，网站开发，动画开发，网络营销,网络推广，SEO,也如雨后春笋般涌现，在IT时代谁掌握了网络传媒的领先技能，谁就可以合理的运用第四传媒的力量。. </p>
+        </div>
+        <!-- End #tab3 -->
+      </div>
+      <!-- End .content-box-content -->
+    </div>
+    <!-- End .content-box -->
+    <div class="content-box column-right closed-box">
+      <div class="content-box-header">
+        <!-- Add the class "closed" to the Content box header to have it closed by default -->
+        <h3>内容框的右侧</h3>
+      </div>
+      <!-- End .content-box-header -->
+      <div class="content-box-content">
+        <div class="tab-content default-tab">
+          <h4>网络营销</h4>
+          <p> 网络传媒网提供学习搜索引擎优化与网络营销，提供免费网络营销案例，seo基础，SEO教程、SEO工具、SEO案例销资料下载网络传媒网提供学习搜索引擎优化与网络营销，提供免费网络营销案例，seo基础，SEO教程、SEO工具、SEO案例销资料下载网络传媒网提供学习搜索引擎优化与网络营销，提供免费网络营销案例，seo基础，SEO教程、SEO工具、SEO案例销资料下载。 </p>
+        </div>
+        <!-- End #tab3 -->
+      </div>
+      <!-- End .content-box-content -->
+    </div>
+    <!-- End .content-box --> 
+
+<include file="./Tpl/Admin/Public/foot.html"/>   
