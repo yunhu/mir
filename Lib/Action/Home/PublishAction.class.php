@@ -194,7 +194,8 @@ class PublishAction extends PreAction {
      *临时抓取文章
      */
     public function temp_aiticle(){
-            $str=file_get_contents('http://www.5uwl.net/Article/ShowClass.asp?ClassID=1&page=1');
+        die;
+            $str=file_get_contents('http://www.5uwl.net/Article/ShowClass.asp?ClassID=1&page=8');
 $url="http://www.5uwl.net";
 
 preg_match('/\<table(.*?)\<\/table\>/',$str,$new);
@@ -212,67 +213,14 @@ public function fetch_content($con,$url){
     $cona=file_get_contents($url);
    $res= preg_match_all('/\<td class=art03 vAlign=top align=left\>(.*)\<div id=\"bdshare\"/is',$cona,$resa);
     $last=preg_replace('/href=\"(.*?)\"/',"href='http://www.sifu010.com'",$resa[1][0]);
-    file_put_contents($con.'.txt',$this->GetGB2312String(trim($last)));
+    $data['uid']=1;
+    $data['classify']=6;
+    $data['content']=iconv("gb2312","utf-8",trim($last));
+    $data['title']=iconv("gb2312","utf-8",trim($con));
+    $data['apply_time']=time();
+    $data['status']=0;
+    //file_put_contents($con.'.txt',$this->GetGB2312String(trim($last)));
+    M("Article")->add($data);
 }
-   public function GetGB2312String($name)
-{
-$tostr = "";
-for($i=0;$i<strlen($name);$i++)
-{
-   $curbin = ord(substr($name,$i,1));
-   if($curbin < 0x80)
-   {
-    $tostr .= substr($name,$i,1);
-   }elseif($curbin < bindec("11000000")){
-    $str = substr($name,$i,1);
-    $tostr .= "&#".ord($str).";";
-   }elseif($curbin < bindec("11100000")){
-    $str = substr($name,$i,2);
-    $tostr .= "&#".$this->GetUnicodeChar($str).";";
-    $i += 1;
-   }elseif($curbin < bindec("11110000")){
-    $str = substr($name,$i,3);
-    $gstr= iconv("UTF-8","GB2312",$str);
-    if(!$gstr)
-    {
-    $tostr .= "&#".$this->GetUnicodeChar($str).";";
-    }else{
-    $tostr .= $gstr;
-    }
-    $i += 2;
-   }elseif($curbin < bindec("11111000")){
-    $str = substr($name,$i,4);
-    $tostr .= "&#".$this->GetUnicodeChar($str).";";
-   
-    $i += 3;
-   }elseif($curbin < bindec("11111100")){
-    $str = substr($name,$i,5);
-    $tostr .= "&#".$this->GetUnicodeChar($str).";";
-   
-    $i += 4;
-   }else{
-    $str = substr($name,$i,6);
-    $tostr .= "&#".$this->GetUnicodeChar($str).";";
-   
-    $i += 5;
-   }
-}
-
-return $tostr;
-}//end function
-public function GetUnicodeChar($str)
-{
-$temp = "";
-for($i=0;$i<strlen($str);$i++)
-{
-   $x = decbin(ord(substr($str,$i,1)));
-   if($i == 0)
-   {
-    $s = strlen($str)+1;
-    $temp .= substr($x,$s,8-$s);
-   }else{
-    $temp .= substr($x,2,6);
-   }
-}
-} 
+  
 }

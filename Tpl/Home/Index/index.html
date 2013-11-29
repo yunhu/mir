@@ -5,12 +5,22 @@
 		<div class="server">
 			<ul>
 				<li><span class="span1"><b>服务器名称</b></span><span class="span2"><b>服务器IP</b></span><span class="span3"><b>开放时间</b></span><span class="span4"><b>线路·</b></span><span class="span5"><b>版本介绍</b></span><span class="span6"><b>客服QQ</b></span><span class="span7"  style="*width:93px;" style="*width:93px;"><b>客服QQ</b></span></li>
+                <div id="col">
 				 <volist name="data" id="vo">
-				<li><span class="span1"><a href="/show/preview/id/{$vo.pid}" target="_blank">{$vo.name}</a></span><span class="span2"><a href="/show/preview/id/{$vo.pid}" target="_blank">{$vo.serverip}</a></span><span class="span3">{$vo.server_time|date="Y/m/d H:i:s",###}开放</span><span class="span4">{$vo.line_type}</span><span class="span5">{$vo.version}</span><span class="span6">{$vo.qq}</span><span class="span7"  style="*width:93px;"><a href="/show/preview/id/{$vo.pid}">详情</a></span></li>
+				<li style="background:#FFFF99" onmouseover="moin(this)" onmouseout="moout(this)"><span class="span1"><a href="/show/preview/id/{$vo.pid}.html" target="_blank">{$vo.name}</a></span><span class="span2"><a href="/show/preview/id/{$vo.pid}.html" target="_blank">{$vo.serverip}</a></span><span class="span3">{$vo.server_time|date="Y/m/d H:i:s",###}开放</span><span class="span4">{$vo.line_type}</span><span class="span5">{$vo.version}</span><span class="span6">{$vo.qq}</span><span class="span7"  style="*width:93px;"><a href="/show/preview/id/{$vo.pid}.html">详情</a></span></li>
 				</volist>
+            </div>
 			</ul>
 		</div>
 	</div>
+    <script>
+        function moin(ob){
+            $(ob).css("background","#DFFFF3");
+        }
+        function moout(ob){
+            $(ob).css("background","#FFFF99");
+        }
+    </script>
 <!-- /body -->
 
 <include file="./Tpl/Home/Index/footer.html"/> 

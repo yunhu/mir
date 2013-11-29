@@ -6,6 +6,7 @@ return array(
     'URL_CASE_INSENSITIVE' =>  true,
 	'DB_TYPE'=>'mysql',
 	'DB_HOST'=>'localhost',
+    'URL_HTML_SUFFIX'=>'html',
 	'DB_NAME'=>'primir',
 	'DB_USER'=>'root',
 	'DB_PWD'=>'',
