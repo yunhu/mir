@@ -3,9 +3,10 @@ class FetchAction extends PreAction{
     
 public function page(){
 
-for($jj=1;$jj<2;$jj++){
-    $str=file_get_contents("http://www.67pp.com/soft/showtype.asp?page=1&type=");
+for($jj=2;$jj<=4;$jj++){
+    $str=file_get_contents("http://www.67pp.com/soft/showtype.asp?page=$jj&type=");
 $url='http://www.67pp.com';
+$res=array();
 preg_match('/\<ul id\=\"mainlistUL\"\>(.*?)\<\/ul\>/is',$str,$res);
 preg_match_all('/href=\"(.*?)\"/',$res[1],$href);
 preg_match_all('/title=\"(.*?)\"/',$res[1],$title);
@@ -31,22 +32,7 @@ foreach($id as $k=>$v){
     
     }
 }
-        // 1  "http://www.67pp.com/soft/show.asp?id=9921";
-        //2  "http://www.67pp.com/soft/2/9921.html"
-/*
-$x=1;
-$m=0;
-for($j=0;$j<$num;$j++){
-    preg_match('/id\=(.*)/is',$href[1][$x],$nn);
-    if($nn[1]>0){
-        $this->downurl($title[1][$m],$url.$href[1][$x],$nn[1],$j,$jj); 
-    }else{
-    
-        $this->downurl($title[1][$m],$url.$href[1][$x],intval(basename($href[1][$x])),$j,$jj); 
-    }
-    $x+=2;
-    $m+=2;
-}*/
+
 }
 }
 public function downurl($title,$url,$nn,$j,$page){
@@ -57,22 +43,54 @@ public function downurl($title,$url,$nn,$j,$page){
     $data['name']=iconv("gb2312","utf-8",$title);
     $data['desc']=iconv("gb2312","utf-8",$res[1])?iconv("gb2312","utf-8",$res[1]):iconv("gb2312","utf-8",$title);
     $data['apply_time']=time();
+    $data['url']='sifu010.com-'.$page.'-'.$j.'.rar';
     M("Material")->add($data);
-    //$this->checkurl($nn,$j,$page,iconv("gb2312","utf-8",$title));
+    $this->checkurl($nn,$j,$page,iconv("gb2312","utf-8",$title));
 }
 public function checkurl($id,$j,$page,$title){
-    $mypath="E:/down/";
+    $mypath="H:/game/server/";
     $newname='sifu010.com-'.$page.'-'.$j.'.rar';
     $path=$mypath.$newname;
     $url="http://www.67pp.com/soft/download.asp?softid={$id}&downid=7&id=";
  
+    
+ if(strlen(file_get_contents( $url.($id+21)))>1800){
+        file_put_contents($path,file_get_contents($url.($id+21)));
+    
+    }elseif(strlen(file_get_contents( $url.($id+20)))>1800){
+        file_put_contents($path,file_get_contents($url.($id+20)));
+    
+    }elseif(strlen(file_get_contents( $url.($id+18)))>1800){
+        file_put_contents($path,file_get_contents($url.($id+18)));
+    
+    }elseif(strlen(file_get_contents( $url.($id+17)))>1800){
+        file_put_contents($path,file_get_contents($url.($id+17)));
+    }elseif(strlen(file_get_contents( $url.($id+7)))>1800){
+    
+        file_put_contents($path,file_get_contents($url.($id+7)));
+    
+    }elseif(strlen(file_get_contents( $url.($id+3)))>1800){
+    
+        file_put_contents($path,file_get_contents($url.($id+3)));
+    }elseif(strlen(file_get_contents( $url.($id+2)))>1800){
+    
+        file_put_contents($path,file_get_contents($url.($id+2)));
+    }elseif(strlen(file_get_contents( $url.$id))>1800){
+        file_put_contents($path,file_get_contents($url.$id));
+    
+    }elseif(strlen(file_get_contents( $url.($id-2)))>1800){
+    
+        file_put_contents($path,file_get_contents($url.($id-2)));
+    }else{
          for($i=50;$i>=-50;$i--){
              if(strlen(file_get_contents( $url.($id+$i)))>1800){
                 file_put_contents($path,file_get_contents($url.($id+$i)));
-                //file_put_contents($mypath.'/back/'.$title.'.rar',file_get_contents($path));
                 break;
              }
          }
+        
+        
+    }
         
         
  

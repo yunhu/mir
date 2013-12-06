@@ -1,7 +1,7 @@
-﻿<include file="./Tpl/Home/Index/head.html"/> 
+<include file="./Tpl/Home/Index/head.html"/> 
 	<div class="body">
 		<div class="content border">
-			<div class="intro" style="height:900px;width:100%;*height:960px;">
+			<div class="intro" style="width:100%;">
 				<div class="imglist">
 					<div class="imgdiv">
 						<ul>
@@ -10,7 +10,7 @@
                             <span>{$tli.name|msubstr=0,13}</span>
                            
                                 <div style="text-align:left;width:210px;height:130px">&nbsp;&nbsp;简介:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="/tool/detail/id/{$tli.pid}">{$tli.desc|msubstr=0,65}详情</div>
-                        </a>
+                        </a	>
                         
                         <span >浏览量:{$tli.click}</span>
                         <span>下载量:{$tli.download}</span>

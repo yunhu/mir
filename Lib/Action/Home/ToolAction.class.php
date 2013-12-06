@@ -50,7 +50,7 @@ class ToolAction extends PreAction {
     public function share($pid){
    		 import('ORG.Util.Page');
         $count=M('Material')->where(array('type'=>$pid))->count();
-     	$Page = new Page($count,10);
+     	$Page = new Page($count,20);
      	$show  = $Page->show();
      	$list = M('Material')->where(array('type'=>$pid))->limit($Page->firstRow.','.$Page->listRows)->select();
      	$this->assign('toolist',$list);// 赋值数据集
