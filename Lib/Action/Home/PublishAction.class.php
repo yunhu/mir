@@ -203,6 +203,7 @@ preg_match_all('/href=\"(.*?)\"/',$new[0],$od);
 preg_match_all('/title=\"(.*?)\"/',$new[0],$oda);
 
 $num=count($od[1]);
+
 for($i=0;$i<$num;$i++){
     $this->fetch_content($oda[1][$i],$url.$od[1][$i]);
 }
@@ -222,5 +223,48 @@ public function fetch_content($con,$url){
     //file_put_contents($con.'.txt',$this->GetGB2312String(trim($last)));
     M("Article")->add($data);
 }
-  
+/**
+ *临时抓取67pp
+ */
+public function fetch67(){
+    for($i=1;$i<=67;$i++){
+    $this->fetch($i);
+    }
+}
+public function fetch($page){
+    $str=file_get_contents("http://www.67pp.com/article/3/new_{$page}.html");
+$url='http://www.67pp.com/';
+preg_match('/\<ul id\=\"mainlistUL\"\>(.*?)\<\/ul\>/is',$str,$res);
+preg_match_all('/href=\"(.*?)\"/',$res[1],$href);
+preg_match_all('/title=\"(.*?)\"/',$res[1],$title);
+//var_dump($title[1]);
+$num=count($title[1]);
+$x=1;
+for($j=0;$j<$num;$j++){
+   $this->fetchurl($title[1][$j],$url.$href[1][$x]); 
+    $x+=2;
+}
+}
+
+public function fetchurl($title,$url){
+    $con=file_get_contents($url);
+    preg_match('/\<div id\=\"NewsContentLabel\" class="NewsContent">(.*?)\<\/div\>/is',$con,$result);
+    //print_r($result[1]);
+    //过滤href
+    $web='http://www.67pp.com';
+    $new=preg_replace('/www.67pp.com/','www.sifu010.com',$result[1]);
+    $new.="<br /><a href='http://www.sifu010.com'>来自私服010</a>";
+    //print_r($new);
+    $data['uid']=1;
+    $data['classify']=19;
+    $data['content']=iconv("gb2312","utf-8",$new);
+    $data['title']=iconv("gb2312","utf-8",trim($title));
+    $data['apply_time']=time();
+    $data['status']=0;
+    //file_put_contents($con.'.txt',$this->GetGB2312String(trim($last)));
+    M("Article")->add($data);
+}
+    
+
+
 }

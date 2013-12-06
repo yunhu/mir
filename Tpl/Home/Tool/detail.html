@@ -1,0 +1,24 @@
+﻿<include file="./Tpl/Home/Index/head.html"/> 
+<!-- body -->
+	<div class="body">
+		<div class="content border">
+			<div class="intro" style="height:;">
+				<div class="position" style="margin-top:20px;">当前位置:私服010>资源下载</div>
+				<div class="material">
+					<div class="rightmater">
+                        <h3 style="text-align:center;">{$detaildata.name}</h3>
+						<div><span>下载量:</span><span>{$detaildata.download}</span></div>
+						<div><span>浏览量:</span><span>{$detaildata.click}</span></div>
+						<div><span>运行环境:</span><span>WIN7/2000/XP/2003/</span></div>
+						<div><span>解压密码:</span><span>www.sifu010.com</span></div>
+						<div><span>所需下载积分:</span><span>{$detaildata.need_score}</span></div>
+						<div><span style="float:left;">详情描述:</span><span class="border" style="margin-left:5px;display:block;float:left;width:400px;height:;padding:20px;">{$detaildata.desc}</span></div>
+						<div style="text-align:center;width:80%;"><button>立即下载</button></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- /body -->
+<!-- footer -->
+<include file="./Tpl/Home/Index/footer.html"/>

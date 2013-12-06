@@ -7,11 +7,17 @@ class ArticleAction extends PreAction {
      *return 
      */
     public function index(){
-        $count=M('Article')->where(array('status'=>0))->count();
+        switch(intval($_GET['id'])){
+            case 6:$id=6;break;
+            case 7:$id=7;break;
+            case 19:$id=19;break;
+            default:$id=6;break;
+        }
+        $count=M('Article')->where(array('status'=>0,'classify'=>$id))->count();
    		import('ORG.Util.Page');
      	$Page = new Page($count,10);
      	$show  = $Page->show();
-     	$list = M('Article')->where(array('status'=>0))->limit($Page->firstRow.','.$Page->listRows)->select();
+     	$list = M('Article')->where(array('status'=>0,'classify'=>$id))->limit($Page->firstRow.','.$Page->listRows)->select();
      	$this->assign('list',$list);// 赋值数据集
         $this->assign('page',$show);
 
